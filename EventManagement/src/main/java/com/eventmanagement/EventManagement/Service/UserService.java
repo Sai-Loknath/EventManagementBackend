@@ -10,5 +10,7 @@ public interface UserService {
 	boolean authenticateUser(String email);
 	User getUserById(Long userId);
 	List<Booking> getUserBookings(Long userId);
+	User deleteUser(Long userId);
+	
 
 }
