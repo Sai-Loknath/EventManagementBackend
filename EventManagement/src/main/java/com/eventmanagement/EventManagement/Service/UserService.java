@@ -7,7 +7,7 @@ import com.eventmanagement.EventManagement.Entity.User;
 
 public interface UserService {
 	User registerUser(User user);
-	boolean authenticateUser(String email);
+	boolean authenticateUser(String email,String password);
 	User getUserById(Long userId);
 	List<Booking> getUserBookings(Long userId);
 	User deleteUser(Long userId);

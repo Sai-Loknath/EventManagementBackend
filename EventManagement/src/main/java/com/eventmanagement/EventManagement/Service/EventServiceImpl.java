@@ -2,9 +2,12 @@ package com.eventmanagement.EventManagement.Service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.eventmanagement.EventManagement.Entity.Booking;
 import com.eventmanagement.EventManagement.Entity.Event;
 
+@Service
 public class EventServiceImpl implements EventService {
 
 	@Override

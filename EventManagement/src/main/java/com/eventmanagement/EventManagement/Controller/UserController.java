@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.eventmanagement.EventManagement.DTO.LoginRequest;
 import com.eventmanagement.EventManagement.Entity.Booking;
 import com.eventmanagement.EventManagement.Entity.User;
 import com.eventmanagement.EventManagement.Service.UserService;
