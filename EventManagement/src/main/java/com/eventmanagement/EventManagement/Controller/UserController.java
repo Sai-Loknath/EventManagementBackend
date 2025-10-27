@@ -31,7 +31,7 @@ public class UserController {
     	if (isAuthenticated) {
             return ResponseEntity.ok("Login successful");
     	} else {
-            return ResponseEntity.status(401).body("Invalid credentials");
+            return ResponseEntity.status(402).body("Invalid credentials");
     	}
 	}
  
