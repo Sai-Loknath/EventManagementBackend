@@ -6,17 +6,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.eventmanagement.EventManagement.Utilities.ApiErrorResponse;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistsException.class)
-    public ResponseEntity<String> handleUserAlreadyExists(UserAlreadyExistsException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    public ResponseEntity<ApiErrorResponse> handleUserAlreadyExists(UserAlreadyExistsException exc) {
+        return buildErrorResponse(exc,HttpStatus.CONFLICT);
+    }
+    
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleUserNotFound(UserNotFoundException exc){
+    	return buildErrorResponse(exc,HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handleRuntime(RuntimeException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+   
+    
+    private ResponseEntity<ApiErrorResponse> buildErrorResponse(Exception exc, HttpStatus status){
+    	ApiErrorResponse error=new ApiErrorResponse();
+    	error.setStatus(status.value());
+    	error.setMessage(exc.getMessage());
+    	error.setTimestamp(System.currentTimeMillis());
+    	return new ResponseEntity<>(error,status);
     }
 }
 
